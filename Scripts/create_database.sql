@@ -3,6 +3,8 @@ CREATE TYPE status_enum AS ENUM ('pending', 'decided');
 
 -- Create custom ENUM type for sex
 CREATE TYPE sex_enum AS ENUM ('male', 'female');
+-- Create custom ENUM type for TaskType
+CREATE TYPE task_enum AS ENUM ('day_boarding', 'doggy_day_care', 'dog_walking', 'home_visits', 'house_sitting');
 
 -- Users Table
 CREATE TABLE Users (
@@ -39,6 +41,7 @@ CREATE TABLE Adoption_Listings (
     PetId UUID REFERENCES Pets(Id) ON DELETE CASCADE,
     Description TEXT,
     Status status_enum DEFAULT 'pending',  -- Using the custom ENUM type for status
+    TaskType task_enum,  -- Using the custom ENUM type for TaskType
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
